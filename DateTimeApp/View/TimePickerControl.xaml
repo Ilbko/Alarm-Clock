@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="DateTimeApp.View.TimePickerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DateTimeApp.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="600">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="ListBox">
+                <Setter Property="FontSize" Value="50"></Setter>
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <ComboBox SelectionChanged="HourComboBox_SelectionChanged" x:Name="HourComboBox" Grid.Column="0"></ComboBox>
+        <ComboBox SelectionChanged="MinuteComboBox_SelectionChanged" x:Name="MinuteComboBox" Grid.Column="1"></ComboBox>
+    </Grid>
+</UserControl>

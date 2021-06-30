@@ -1,0 +1,44 @@
+﻿<Window x:Class="DateTimeApp.View.AlarmWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DateTimeApp.View"
+        mc:Ignorable="d"
+        Title="AlarmWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="FontSize" Value="40"></Setter>
+                <Setter Property="Margin" Value="20"></Setter>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="Foreground" Value="Orange"></Setter>
+                <Setter Property="BorderBrush" Value="Black"></Setter>
+                <Setter Property="BorderThickness" Value="1"></Setter>
+            </Style>
+        </Grid.Resources>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <DatePicker Grid.Row="0" Grid.Column="0" SelectedDate="{Binding PickedDate, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+        <local:TimePickerControl Grid.Row="0" Grid.Column="1" MyHourProperty="{Binding PickedHour, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MyMinuteProperty="{Binding PickedMinute, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></local:TimePickerControl>
+
+        <Label x:Name="StatusLabel" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="{}"></Label>
+
+        <Button Grid.Row="2" Grid.Column="0" Command="{Binding WindCommand}">Завести</Button>
+        <Button Grid.Row="2" Grid.Column="1" Command="{Binding ResetCommand}">Сбросить</Button>
+    </Grid>
+</Window>
