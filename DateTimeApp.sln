@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeApp", "DateTimeApp\DateTimeApp.csproj", "{33A9362F-F6CB-4B3C-9C30-88746DB2C726}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DateTimeAppSetup", "DateTimeAppSetup\DateTimeAppSetup.vdproj", "{592187F0-BB38-40D9-9031-3C2E49E98611}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{33A9362F-F6CB-4B3C-9C30-88746DB2C726}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33A9362F-F6CB-4B3C-9C30-88746DB2C726}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33A9362F-F6CB-4B3C-9C30-88746DB2C726}.Release|Any CPU.Build.0 = Release|Any CPU
+		{592187F0-BB38-40D9-9031-3C2E49E98611}.Debug|Any CPU.ActiveCfg = Debug
+		{592187F0-BB38-40D9-9031-3C2E49E98611}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

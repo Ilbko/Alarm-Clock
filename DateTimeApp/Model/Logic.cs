@@ -31,6 +31,7 @@ namespace DateTimeApp.Model
                 registryKey.SetValue(autorunName, Application.ExecutablePath);
 
                 MessageBox.Show("Программа успешно добавлена в автозапуск.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Logic.Log("Программа добавлена в автозапуск.", 0);
             }
             catch (System.Exception e)
             {
@@ -49,6 +50,7 @@ namespace DateTimeApp.Model
                 registryKey.DeleteValue(autorunName, false);
 
                 MessageBox.Show("Программа успешно удалена из автозапуска.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Logic.Log("Программа удалена из автозапуска", 0);
             }
             catch (System.Exception e)
             {

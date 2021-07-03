@@ -1,4 +1,5 @@
-﻿using DateTimeApp.Model.Base;
+﻿using DateTimeApp.Model;
+using DateTimeApp.Model.Base;
 using DateTimeApp.View.ViewModel;
 using System;
 using System.ComponentModel;
@@ -52,7 +53,7 @@ namespace DateTimeApp.ViewModel
                         this.statusLabel.Content = "Будильник заведён на " + settings.alarmTime.ToString();
                         this.settings.isAlarmSet = true;
                     }
-
+                    Logic.Log("Была произведена попытка завести будильник.", 0);
                 });
             }
         }

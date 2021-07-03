@@ -17,12 +17,13 @@ namespace DateTimeApp
         public MainWindow()
         {
             InitializeComponent();
-
+            
             string path = Path.GetTempPath() + @"\AlarmLog" + DateTime.Now.ToString("yyyy-MM-dd;HH-mm-ss") + ".log";
 
             TextWriterTraceListener text = new TextWriterTraceListener(path);
             Trace.Listeners.Add(text);
             Trace.AutoFlush = true;
+            Logic.Log("Был установлен текстовый слушатель трассировки.", -1);
 
             this.DataContext = this.timeViewModel = new TimeViewModel(ref this.MainGrid);
             this.Closing += MainWindow_Closing;

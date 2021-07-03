@@ -31,7 +31,7 @@ namespace DateTimeApp.ViewModel
             using (FileStream stream = new FileStream(this.settingsPath, FileMode.OpenOrCreate))
             {
                 this.settingsSerializer.Serialize(stream, this.settings);
-                Logic.Log("Настройки были сериализированны", 3);
+                Logic.Log("Настройки были сериализированы.", 3);
             }
         }
 

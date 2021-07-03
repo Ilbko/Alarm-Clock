@@ -1,4 +1,5 @@
-﻿using DateTimeApp.Model.Base;
+﻿using DateTimeApp.Model;
+using DateTimeApp.Model.Base;
 using DateTimeApp.ViewModel;
 using System.Windows;
 
@@ -13,6 +14,7 @@ namespace DateTimeApp.View
         {
             InitializeComponent();
             this.DataContext = new SettingsViewModel(ref settings);
+            Logic.Log("Открыто окно настроек.", 0);
         }
     }
 }

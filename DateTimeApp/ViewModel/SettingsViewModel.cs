@@ -85,6 +85,7 @@ namespace DateTimeApp.ViewModel
                     string propValue = propertyInfo.GetValue(this.settings).ToString();
 
                     propertyInfo.SetValue(this.settings, Logic.ChangeColor(propValue));
+                    Logic.Log($"Установлен цвет компонента {act}.", 0);
 
                     OnPropertyChanged(new StringBuilder(act[0] + 32).Insert(0, act.Remove(0)).ToString());
                     //switch (act)
@@ -121,8 +122,6 @@ namespace DateTimeApp.ViewModel
                 return alarmCommand ?? new RelayCommand(() => new AlarmWindow(ref this.settings).ShowDialog());
             }
         }
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
