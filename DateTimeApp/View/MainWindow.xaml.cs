@@ -1,6 +1,10 @@
 ﻿using DateTimeApp.ViewModel;
 using System.Windows;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System;
+using DateTimeApp.Model;
 
 namespace DateTimeApp
 {
@@ -13,10 +17,21 @@ namespace DateTimeApp
         public MainWindow()
         {
             InitializeComponent();
+
+            string path = Path.GetTempPath() + @"\AlarmLog" + DateTime.Now.ToString("yyyy-MM-dd;HH-mm-ss") + ".log";
+
+            TextWriterTraceListener text = new TextWriterTraceListener(path);
+            Trace.Listeners.Add(text);
+            Trace.AutoFlush = true;
+
             this.DataContext = this.timeViewModel = new TimeViewModel(ref this.MainGrid);
             this.Closing += MainWindow_Closing;
         }
 
-        private void MainWindow_Closing(object sender, CancelEventArgs e) => this.timeViewModel.SaveSettings();
+        private void MainWindow_Closing(object sender, CancelEventArgs e) 
+        {
+            this.timeViewModel.SaveSettings();
+            Logic.Log("Программа была закрыта.", 0);
+        }
     }
 }

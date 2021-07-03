@@ -1,5 +1,7 @@
-﻿using Microsoft.Win32;
+﻿using DateTimeApp.Model.Base;
+using Microsoft.Win32;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -8,6 +10,8 @@ namespace DateTimeApp.Model
     public static class Logic
     {
         private static readonly string autorunName = "Alarm Clock";
+
+        internal static void Log(string text, int id) => Trace.WriteLine($"[{DateTime.Now}] " + text, $"{(LogEnum)id}"); 
 
         internal static string ChangeColor(string act)
         {

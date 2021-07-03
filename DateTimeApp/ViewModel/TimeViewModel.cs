@@ -1,10 +1,11 @@
-﻿using DateTimeApp.Model.Base;
+﻿using DateTimeApp.Model;
+using DateTimeApp.Model.Base;
 using DateTimeApp.View;
 using DateTimeApp.View.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Media;
@@ -30,6 +31,7 @@ namespace DateTimeApp.ViewModel
             using (FileStream stream = new FileStream(this.settingsPath, FileMode.OpenOrCreate))
             {
                 this.settingsSerializer.Serialize(stream, this.settings);
+                Logic.Log("Настройки были сериализированны", 3);
             }
         }
 
@@ -68,6 +70,7 @@ namespace DateTimeApp.ViewModel
         {
             if (DateTime.Now >= this.settings.alarmTime && this.settings.isAlarmSet)
             {
+                Logic.Log("Сработал будильник.", 0);
                 this.settings.isAlarmSet = false;
                 this.soundPlayer.Value.PlayLooping();
                 if (MessageBox.Show(this.settings.alarmTime.ToShortTimeString(), "Будильник", MessageBoxButton.OK, MessageBoxImage.Exclamation) == MessageBoxResult.OK)
@@ -102,6 +105,7 @@ namespace DateTimeApp.ViewModel
                 });
 
                 Application.Current.Resources.Source = new Uri("View/Themes/" + themes[0] + ".xaml", UriKind.RelativeOrAbsolute);
+                Logic.Log("Была установлена дневная тема.", 0);
             }
         }
 
@@ -116,6 +120,7 @@ namespace DateTimeApp.ViewModel
                 //ResourceDictionary resource = (ResourceDictionary)Application.LoadComponent(new Uri("View/Themes/" + themes[1] + ".xaml", UriKind.Relative));
                 //Application.Current.Resources.MergedDictionaries.Add(resource);
                 Application.Current.Resources.Source = new Uri("View/Themes/" + themes[1] + ".xaml", UriKind.RelativeOrAbsolute);
+                Logic.Log("Была установлена ночная тема.", 0);
             }
         }
 
@@ -198,27 +203,22 @@ namespace DateTimeApp.ViewModel
         private void InitSettings(bool isError)
         {
             if (isError)
+            {
+                Logic.Log("Ошибка при десериализации файла настроек.", 2);
                 File.Delete(this.settingsPath);
+                Logic.Log("Файл настроек был удалён.", 1);
+            }
 
             if (!File.Exists(this.settingsPath))
             {
                 this.settings = new Settings();
-                //this.settings = new Settings()
-                //{
-                //    timeFormat = true,
-                //    dateBrush = ColorTranslator.ToHtml(System.Drawing.Color.Black),
-                //    timeBrush = ColorTranslator.ToHtml(System.Drawing.Color.Black),
-                //    backgroundBrush = ColorTranslator.ToHtml(System.Drawing.Color.White),
-                //    isAutorun = false,
-                //    nightTheme = true,
-                //    nightThemeToggled = false,
-                //    monthFormat = true
-                //};
+
                 Settings.Init(ref this.settings);
 
                 using (FileStream stream = new FileStream(this.settingsPath, FileMode.OpenOrCreate))
                 {
                     this.settingsSerializer.Serialize(stream, this.settings);
+                    Logic.Log("Создан файл настроек.", 0);
                 }
             }
         }
@@ -230,6 +230,7 @@ namespace DateTimeApp.ViewModel
                 try
                 {
                     this.settings = (Settings)this.settingsSerializer.Deserialize(stream);
+                    Logic.Log("Файл настроек успешно десериализирован.", 3);
                 }
                 catch (System.Exception e)
                 {
@@ -246,7 +247,7 @@ namespace DateTimeApp.ViewModel
 
             this.InitSettings(isError: false);
 
-            this.GetSettings();
+            this.GetSettings();          
 
             Application.Current.Resources.Source = new Uri("View/Themes/" + themes[1] + ".xaml", UriKind.RelativeOrAbsolute);
 
